@@ -8,7 +8,7 @@ Also Pi-Hole IP need to be configured in local Modem/Router as primary DNS serve
 I also disable secondary DNS server in router to avoid bypassing Pi-Hole.
 
 3. Create directory /var/www/html/admin/myserver. 
-Copy all directory content to that directory.
+Copy all project content to that directory.
 
 4. In Pi-Hole under /var/www/html/admin/  modify  index.lp page.
 5. Remove original page and using ssh copy index.lp modified file from "myserver" folder to that folder. 
@@ -61,20 +61,20 @@ By doing this we realize that in case of Pi-Hole updates related to this page th
 8. Do not forget to change default Pi-Hole password from "Raspberry" to something else. Kids are mostly smarter that we
    think.
 
-9. Configure Rpi to start NewTimeLimiter.py script at start-up. This can be don by several methods. This one is also
-10. working well. 
-	in putty or any other command line interface for Rpi run
+9. Configure Rpi to start NewTimeLimiter.py script at start-up. This can be done by several methods. This one is also
+	working well. 
+	Run
 
     	sudo nano /etc/rc.local
-	add this line at the end of file
+	add this line at the end of the file
 
     	python3 /var/www/html/myserver/NewTimeLimiter.py &
 	Then Ctl+O, Ctr+X
 	
 PS. Script written such a way that it will restart itself at 12PM. 
-This will reset current time limit calculation. All changes to times i.e. 
-Start times and Stop times are written in Log files. 
-Log files can be reviewed by clicking "List Logs" on Pi-Hole Dashboard.
+This will reset current allowed time limits. All changes to times i.e. 
+Start times and Stop times are recorded in Log files for each day. 
+Current Log file can be reviewed by clicking "Today Times" on Pi-Hole Dashboard.
 
 PPS. Some Debug tips.
 Make sure sqlite3 installed. 
