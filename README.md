@@ -8,7 +8,7 @@ Also Pi-Hole IP need to be configured in local Modem/Router as primary DNS serve
 I also disable secondary DNS server in router to avoid bypassing Pi-Hole.
 
 3. Create directory /var/www/html/admin/myserver. 
-Copy HiHole_V6_Mode folder content to that directory.
+Copy all directory content to that directory.
 
 4. In Pi-Hole under /var/www/html/admin/  modify  index.lp page.
 5. Remove original page and using ssh copy index.lp modified file from "myserver" folder to that folder. 
