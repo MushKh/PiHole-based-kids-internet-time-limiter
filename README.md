@@ -22,7 +22,10 @@ By doing this we realize that in case of Pi-Hole updates related to this page th
         sudo chmod +x NewTimeLimiter.py
         sudo chmod +x setGroupStatus.sh
         sudo chmod +x UpdateGrav.sh	
-	Owner of whole myserver directory shall be "pi"
+	Owner of whole myserver directory shall be "pihole" so run these commands too.
+	
+		sudo chown -R pihole:pihole /var/www/html/admin/myserver
+		sudo chmod 775 /var/www/html/admin/myserver
 
 7. Configring Pi-Hole
    
