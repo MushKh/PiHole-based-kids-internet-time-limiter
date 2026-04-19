@@ -89,6 +89,8 @@ def main():
     # Reset file at startup
     reset_usage_minutes()  
     
+    logging.info("DNS Service Disabled <br>")                    
+    EnableGroup()   
     # Track current day
     today = date.today()    
     
