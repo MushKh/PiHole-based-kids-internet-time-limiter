@@ -18,7 +18,7 @@ CHECK_INTERVAL = 20  # seconds
 previous_usage = 0
 remaining_seconds = 0
 
-today = datetime.datetime.now().strftime("%d, %m, %Y")
+today = datetime.datetime.now().strftime("%d_%m_%Y")
 log_filename = "/var/www/html/admin/myserver/Limiter_log" + today + ".html"
 
 #Disabling the group will enable the Internet and vice versa

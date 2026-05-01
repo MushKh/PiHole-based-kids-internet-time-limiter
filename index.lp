@@ -100,7 +100,7 @@ end
 						local directory = "/admin/myserver"
 
 						-- Format date like PHP: date("d, m, Y")
-						local date_string = os.date("%d, %m, %Y")
+						local date_string = os.date("%d_%m_%Y")
 
 						local FileNameBase = "Limiter_log" .. date_string .. ".html"
 						local FileNameFull = directory .. "/" .. FileNameBase

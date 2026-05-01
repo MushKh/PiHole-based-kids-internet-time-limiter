@@ -1,0 +1,15 @@
+[Unit]
+Description=Kids Time Limiter script for PiHole
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/python3 /var/www/html/admin/myserver/NewTimeLimiter.py
+WorkingDirectory=/home/pi
+StandardOutput=inherit
+StandardError=inherit
+Restart=always
+User=pi
+Group=pi
+
+[Install]
+WantedBy=multi-user.target

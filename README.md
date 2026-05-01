@@ -61,7 +61,10 @@ By doing this we realize that in case of Pi-Hole updates related to this page th
 8. Do not forget to change default Pi-Hole password from "Raspberry" to something else. Kids are mostly smarter that we
    think.
 
-9. Configure Rpi to start NewTimeLimiter.py script at start-up. This can be done by several methods. This one is also
+9. Configure Rpi to start NewTimeLimiter.py script at start-up.
+ 
+	A) For Raspberry Pi 3B+ 
+	This can be done by several methods. This one is also
 	working well. 
 	Run
 
@@ -70,6 +73,22 @@ By doing this we realize that in case of Pi-Hole updates related to this page th
 
     	python3 /var/www/html/myserver/NewTimeLimiter.py &
 	Then Ctl+O, Ctr+X
+	
+	B) For RPi5
+	Copy NewTimeLimiter.service file from system directory to  /etc/systemd/system/
+	Run these commands
+		sudo systemctl daemon-reexec
+		sudo systemctl daemon-reload
+		sudo systemctl enable NewTimeLimiter.service
+		sudo systemctl start NewTimeLimiter.service
+	Also need to fix group settings	
+		sudo usermod -aG pihole pi
+		sudo chgrp -R pihole /var/www/html/admin/myserver
+		sudo chmod -R 750 /var/www/html/admin/myserver
+		sudo reboot
+		
+	To check if service is running
+		journalctl -u NewTimeLimiter.service -f
 	
 PS. Script written such a way that it will restart itself at 12PM. 
 This will reset current allowed time limits. All changes to times i.e. 

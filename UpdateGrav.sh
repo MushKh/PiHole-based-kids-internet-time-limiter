@@ -2,6 +2,6 @@
 
 # Update PiHole gravity
 
-sudo pihole -g;
+pihole -g;
 
 exit 0
