@@ -77,17 +77,21 @@ By doing this we realize that in case of Pi-Hole updates related to this page th
 	B) For RPi5
 	Copy NewTimeLimiter.service file from system directory to  /etc/systemd/system/
 	Run these commands
+	
 		sudo systemctl daemon-reexec
 		sudo systemctl daemon-reload
 		sudo systemctl enable NewTimeLimiter.service
 		sudo systemctl start NewTimeLimiter.service
+		
 	Also need to fix group settings	
+	
 		sudo usermod -aG pihole pi
 		sudo chgrp -R pihole /var/www/html/admin/myserver
 		sudo chmod -R 750 /var/www/html/admin/myserver
 		sudo reboot
 		
 	To check if service is running
+	
 		journalctl -u NewTimeLimiter.service -f
 	
 PS. Script written such a way that it will restart itself at 12PM. 
