@@ -22,9 +22,9 @@ today = datetime.datetime.now().strftime("%d_%m_%Y")
 log_filename = "/var/www/html/admin/myserver/Limiter_log" + today + ".html"
 
 #Disabling the group will enable the Internet and vice versa
-comm_DisGroup = "/var/www/html/admin/myserver/./setGroupStatus.sh Kids_Group disable"
-comm_EnGroup = "/var/www/html/admin/myserver/./setGroupStatus.sh Kids_Group enable"
-UpdateGravity = "/var/www/html/admin/myserver/./UpdateGrav.sh"
+#comm_DisGroup = "/var/www/html/admin/myserver/./setGroupStatus.sh Kids_Group disable"
+#comm_EnGroup = "/var/www/html/admin/myserver/./setGroupStatus.sh Kids_Group enable"
+#UpdateGravity = "/var/www/html/admin/myserver/./UpdateGrav.sh"
 
 def restart_script():
     python = sys.executable
@@ -57,21 +57,30 @@ def read_usage_minutes():
 
 def EnableGroup():
     try:
-        result = subprocess.run(comm_EnGroup, shell=True, capture_output=True, text=True)
-        result = subprocess.run(UpdateGravity, shell=True, capture_output=True, text=True)        
-        #print("Enable command executed")
+        subprocess.run(
+            ["/var/www/html/admin/myserver/setGroupStatus.sh", "Kids_Group", "enable"],
+            check=True
+        )
+        subprocess.run(
+            ["/var/www/html/admin/myserver/UpdateGrav.sh"],
+            check=True
+        )
     except Exception as e:
         print(f"Error executing enable script: {e}")
 
 
 def DisableGroup():
     try:
-        #Then disable group to start counting time
-        result = subprocess.run(comm_DisGroup, shell=True, capture_output=True, text=True)
-        result = subprocess.run(UpdateGravity, shell=True, capture_output=True, text=True)
-        #print("Disable command executed")
+        subprocess.run(
+            ["/var/www/html/admin/myserver/setGroupStatus.sh", "Kids_Group", "disable"],
+            check=True
+        )
+        subprocess.run(
+            ["/var/www/html/admin/myserver/UpdateGrav.sh"],
+            check=True
+        )
     except Exception as e:
-        print(f"Error executing disable script: {e}")
+        print(f"Error executing enable script: {e}")
         
 def format_seconds(seconds):
     hours, remainder = divmod(seconds, 3600)

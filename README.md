@@ -75,7 +75,6 @@ By doing this we realize that in case of Pi-Hole updates related to this page th
 	Then Ctl+O, Ctr+X
 	
 	B) For RPi5
-	Copy NewTimeLimiter.service file from system directory to  /etc/systemd/system/
 	Run these commands
 	
 		sudo systemctl daemon-reexec
@@ -88,9 +87,19 @@ By doing this we realize that in case of Pi-Hole updates related to this page th
 		sudo usermod -aG pihole pi
 		sudo chgrp -R pihole /var/www/html/admin/myserver
 		sudo chmod -R 750 /var/www/html/admin/myserver
+		
+	Also do this
+	
+		sudo visudo
+		
+	add this line
+	
+		pi ALL=(ALL) NOPASSWD: /usr/local/bin/pihole
+		
+	then 
 		sudo reboot
 		
-	To check if service is running
+	To check if service is running with no errors
 	
 		journalctl -u NewTimeLimiter.service -f
 	
